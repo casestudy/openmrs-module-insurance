@@ -1,0 +1,6 @@
+org\openmrs\module\insurance\Item.class
+org\openmrs\module\insurance\api\impl\InsuranceServiceImpl.class
+org\openmrs\module\insurance\api\dao\InsuranceDao.class
+org\openmrs\module\insurance\InsuranceActivator.class
+org\openmrs\module\insurance\InsuranceConfig.class
+org\openmrs\module\insurance\api\InsuranceService.class

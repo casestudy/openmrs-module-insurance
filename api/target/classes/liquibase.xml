@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+ 
+    <!--
+    	See http://wiki.openmrs.org/display/docs/Module+liquibase+File for 
+    	documentation on this file.
+    
+        See http://www.liquibase.org/manual/home#available_database_refactorings
+        for a list of supported elements and attributes
+    -->
+ 
+ 	<!-- Uncomment the changeset below if you want to make the Item class persistable, see also Item and InsuranceDaoTest -->
+ 	
+	<changeSet id="insurance-2017-10-06-11-05" author="femencha">
+		<preConditions onFail="MARK_RAN">
+			<not><tableExists tableName="insurer"/></not>
+		</preConditions>
+		<comment>
+			Creating the insurer table
+		</comment>
+		<createTable tableName="insurer">
+			<column name="insurer_id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="uuid" type="char(38)">
+				<constraints nullable="false" unique="true"></constraints>
+			</column>
+			<column name="name" type="varchar(255)" />
+			<column name="alias" type="varchar(20)" />
+			<column name="address" type="varchar(50)" />
+
+			<column name="deleted" type="BOOLEAN">
+				<constraints nullable="false"/>
+			</column>
+
+			<column name="deleted_by" type="int" />
+			<column name="deleted_reason" type="varchar(255)" />
+			<column name="deleted_on" type="DATETIME" />
+
+			<column name="created_on" type="DATETIME" />
+			<column name="created_by" type="int" />
+		</createTable>
+
+        <addForeignKeyConstraint constraintName="insurer_deleted_by_fk" baseTableName="insurer" baseColumnNames="deleted_by"  referencedTableName="users" referencedColumnNames="user_id" />
+        <addForeignKeyConstraint constraintName="insurer_created_by_fk" baseTableName="insurer" baseColumnNames="created_by"  referencedTableName="users" referencedColumnNames="user_id" />
+
+       <!--  <insert tableName="insurer">
+			  <column name="insurer_id" valueNumeric="1"/>
+			  <column name="uuid" value="AS6532121SA"/>
+			  <column name="name" value="Activa Assurances"/>
+			  <column name="alias" value="Activa"/>
+			  <column name="address" value="Rue Prince de Galle Akwa"/>
+			  <column name="deleted" valueBoolean="false"/>
+			  <column name="deleted_by" valueNumeric="1"/>
+			  <column name="deleted_reason" value=""/>
+			  <column name="deleted_on" valueDate=""/>
+			  <column name="created_on" valueDate="2017-10-06"/>
+			  <column name="created_by" valueNumeric="1"/>
+		</insert> -->
+    </changeSet> 
+
+    <changeSet id="insurance-2017-10-09-08-35" author="femencha">
+    	<insert tableName="insurer">
+			  <column name="insurer_id" valueNumeric="1"/>
+			  <column name="uuid" value="8920d6d8-acca-11e7-abc4-cec278b6b50a"/>
+			  <column name="name" value="Activa Assurances"/>
+			  <column name="alias" value="Activa"/>
+			  <column name="address" value="Rue Prince de Galle Akwa"/>
+			  <column name="deleted" valueBoolean="false"/>
+			  <column name="deleted_by" valueNumeric="1"/>
+			  <column name="deleted_reason" value="Test"/>
+			  <column name="deleted_on" valueDate="2017-10-06"/>
+			  <column name="created_on" valueDate="2017-10-06"/>
+			  <column name="created_by" valueNumeric="1"/>
+		</insert>
+    </changeSet>
+
+    <!-- <changeSet id="insurance-2017-10-06-16-05" author="femencha">
+    	<insert tableName="insurer">
+			  <column name="insurer_id" valueNumeric="1"/>
+			  <column name="uuid" value="8920da16-acca-11e7-abc4-cec278b6b50a"/>
+			  <column name="name" value="Activa Assurances"/>
+			  <column name="alias" value="Activa"/>
+			  <column name="address" value="Rue Prince de Galle Akwa"/>
+			  <column name="deleted" valueBoolean="0"/>
+			  <column name="deleted_by" valueNumeric="1"/>
+			  <column name="deleted_reason" value=""/>
+			  <column name="deleted_on" valueDate=""/>
+			  <column name="created_on" valueDate="2017-10-06"/>
+			  <column name="created_by" valueNumeric="1"/>
+		</insert>
+    </changeSet> -->
+ 
+</databaseChangeLog>
