@@ -17,8 +17,8 @@
 	
 	<class name="org.openmrs.module.insurance.Item" table="insurer">
 		
-		<id name="InsurerId" type="int" column="insurer_id">
-            <generator />
+		<id name="id" type="int" column="insurer_id">
+            <generator class="native" />
         </id>
 
         <property name="uuid" type="java.lang.String"
@@ -27,17 +27,17 @@
 		<property name="name" type="java.lang.String" column="name"
 			not-null="false" length="255" />
 
-		<property name="alias" type="java.util.String"
+		<property name="alias" type="java.lang.String"
 			column="alias" length="20" />
 
-		<property name="address" type="java.util.String"
+		<property name="address" type="java.lang.String"
 			column="address" length="50"/>
 
 		<property name="deleted" type="boolean" column="deleted" length="1" not-null="true" />
 
 		<many-to-one name="deletedBy" column="deleted_by" />
 
-		<property name="deleteReason" type="java.util.String" column="deleted_reason" length="255"/>
+		<property name="deleteReason" type="java.util.Date" column="deleted_reason" length="255"/>
 
 		<property name="deletedOn" type="java.util.Date" column="deleted_on" />
 
@@ -45,7 +45,7 @@
 
 		<many-to-one name="createdBy" column="created_by" not-null="true"/>
 
-		<property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true"/>
+		<!-- <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true"/> -->
 
 	</class>
 
